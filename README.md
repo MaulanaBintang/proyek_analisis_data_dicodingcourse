@@ -17,3 +17,4 @@ pip install -r requirements.txt
 cd proyek_analisis_data_dicodingcourse/dashboard/
 streamlit run dashboard.py
 ```
+Atau bisa kuncungi URL 
