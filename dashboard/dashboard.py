@@ -117,6 +117,7 @@ ax.tick_params(axis='y', labelsize=20)
 ax.tick_params(axis='x', labelsize=15)
 st.pyplot(fig)
 
+fig, ax = plt.subplots(figsize=(16, 8))
 st.subheader("pada hari apa yang paling banyak dan paling sedikit disewa?")
 day_rental_totals = days_data.groupby('one_of_week')['count_cr'].sum().reset_index()
 
@@ -131,6 +132,7 @@ plt.xlabel('Day of the Week')
 plt.ylabel('Number of Rentals')
 
 plt.tight_layout()
+st.pyplot(fig)
 
 st.subheader("Perbandingan Customer yang Registered dengan casual")
 
