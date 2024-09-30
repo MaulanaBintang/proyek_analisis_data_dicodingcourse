@@ -117,22 +117,23 @@ ax.tick_params(axis='y', labelsize=20)
 ax.tick_params(axis='x', labelsize=15)
 st.pyplot(fig)
 
-fig, ax = plt.subplots(figsize=(16, 8))
-st.subheader("pada hari apa yang paling banyak dan paling sedikit disewa?")
-day_rental_totals = days_data.groupby('one_of_week')['count_cr'].sum().reset_index()
+st.subheader("Pada hari apa yang paling banyak dan paling sedikit disewa?")
 
+# Group by day of the week and calculate total rentals
+day_rental_totals = days_data.groupby('one_of_week')['count_cr'].sum().reset_index()
 day_rental_totals = day_rental_totals.sort_values(by='count_cr', ascending=False)
 
-plt.figure(figsize=(8, 6))
+# Create a new figure for the barplot
+fig2, ax2 = plt.subplots(figsize=(8, 6))
 
-sns.barplot(x='one_of_week', y='count_cr', data=day_rental_totals, palette='coolwarm')
+sns.barplot(x='one_of_week', y='count_cr', data=day_rental_totals, palette='coolwarm', ax=ax2)
 
-plt.title('Total Bike Rentals by Day of the Week', fontsize=16)
-plt.xlabel('Day of the Week')
-plt.ylabel('Number of Rentals')
+ax2.set_title('Total Bike Rentals by Day of the Week', fontsize=16)
+ax2.set_xlabel('Day of the Week')
+ax2.set_ylabel('Number of Rentals')
 
-plt.tight_layout()
-st.pyplot(fig)
+# Display the barplot in Streamlit
+st.pyplot(fig2)
 
 st.subheader("Perbandingan Customer yang Registered dengan casual")
 
