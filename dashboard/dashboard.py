@@ -131,8 +131,6 @@ plt.xlabel('Day of the Week')
 plt.ylabel('Number of Rentals')
 
 plt.tight_layout()
- 
-st.pyplot(fig)
 
 st.subheader("Perbandingan Customer yang Registered dengan casual")
 
