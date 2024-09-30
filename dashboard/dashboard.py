@@ -118,24 +118,19 @@ ax.tick_params(axis='x', labelsize=15)
 st.pyplot(fig)
 
 st.subheader("pada hari apa yang paling banyak dan paling sedikit disewa?")
-fig, ax = plt.subplots(nrows=1, ncols=2, figsize=(50, 20))
+day_rental_totals = day_data.groupby('one_of_week')['count_cr'].sum().reset_index()
 
-sns.barplot(x="one_of_week", y="count_cr", data=sum_order_items_data.head(5), palette=["#D3D3D3", "#D3D3D3", "#90CAF9", "#D3D3D3", "#D3D3D3"], ax=ax[0])
-ax[0].set_ylabel(None)
-ax[0].set_xlabel("Day", fontsize=30)
-ax[0].set_title("Hari dengan sedikit penyewa sepeda", loc="center", fontsize=30)
-ax[0].tick_params(axis='y', labelsize=35)
-ax[0].tick_params(axis='x', labelsize=30)
- 
-sns.barplot(x="one_of_week", y="count_cr", data=sum_order_items_data.sort_values(by="one_of_week", ascending=True).head(5), palette=["#D3D3D3", "#D3D3D3", "#D3D3D3", "#D3D3D3","#90CAF9"], ax=ax[1])
-ax[1].set_ylabel(None)
-ax[1].set_xlabel("Day",  fontsize=30)
-ax[1].set_title("Hari dengan banyak penyewa sepeda", loc="center", fontsize=30)
-ax[1].invert_xaxis()
-ax[1].yaxis.set_label_position("right")
-ax[1].yaxis.tick_right()
-ax[1].tick_params(axis='y', labelsize=35)
-ax[1].tick_params(axis='x', labelsize=30)
+day_rental_totals = day_rental_totals.sort_values(by='count_cr', ascending=False)
+
+plt.figure(figsize=(8, 6))
+
+sns.barplot(x='one_of_week', y='count_cr', data=day_rental_totals, palette='coolwarm')
+
+plt.title('Total Bike Rentals by Day of the Week', fontsize=16)
+plt.xlabel('Day of the Week')
+plt.ylabel('Number of Rentals')
+
+plt.tight_layout()
  
 st.pyplot(fig)
 
